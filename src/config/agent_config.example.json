@@ -1,0 +1,327 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "agent_instance_id": "my-agent-instance-001",
+  "deployment_id": "deployment-prod-001",
+  "app_id": "my-application",
+  "url": "https://my-agent.example.com",
+  "agent_definition": {
+    "agent_id": "my-custom-agent",
+    "name": "My Custom Agent",
+    "agent_type": "PRO_CODE",
+    "version": "1.0.0",
+    "description": "A customizable AI agent for product recommendations",
+    "capabilities": {
+      "streaming": true,
+      "push_notifications": false,
+      "multi_turn": true,
+      "context_aware": true
+    },
+    "provider": {
+      "organization": "CAMS",
+      "url": "https://cams.example.com"
+    },
+    "defaultInputModes": [
+      "text"
+    ],
+    "defaultOutputModes": [
+      "text"
+    ],
+    "skills": [
+      {
+        "skill_id": "product-search",
+        "skill_name": "Product Search",
+        "skill_description": "Search for products based on user queries",
+        "tags": [
+          "search",
+          "products",
+          "e-commerce"
+        ],
+        "examples": [
+          "Find me a laptop for gaming",
+          "Show me running shoes under $100"
+        ]
+      }
+    ],
+    "root_agent": true,
+    "url": "https://my-agent.example.com",
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    },
+    "sub_agents": []
+  },
+  "agent_config": {
+    "agent_id": "my-custom-agent",
+    "agent_name": "My Custom Agent",
+    "app_name_adk": "my_custom_agent",
+    "instructions": "You are a helpful product recommendation assistant. Your role is to:\n- Understand user needs and preferences\n- Search for relevant products\n- Provide detailed product information\n- Compare products when asked\n- Offer personalized recommendations\n\nAlways be helpful, accurate, and customer-focused.",
+    "llm_config": {
+      "model": "gpt-4o",
+      "temperature": 0.3,
+      "max_tokens": "4096"
+    },
+    "llm_provider": "openai",
+    "max_steps": 10,
+    "max_iterations": 5,
+    "datastores": [
+      {
+        "id": "product-catalog-001",
+        "display_name": "Product Catalog",
+        "description": "Main product database with inventory and pricing"
+      }
+    ],
+    "tools": [
+      {
+        "name": "product_search",
+        "owner": "my-company",
+        "description": "Search products by keywords, category, or filters"
+      },
+      {
+        "name": "get_product_details",
+        "owner": "my-company",
+        "description": "Get detailed information about a specific product"
+      }
+    ],
+    "output_key": "final_response",
+    "subagent_configs": [],
+    "secrets": {
+      "langfuse": {
+        "enabled": true,
+        "public_key": "pk-lf-1234567890abcdef",
+        "secret_key": "sk-lf-1234567890abcdef",
+        "host": "https://cloud.langfuse.com"
+      },
+      "database": {
+        "postgres": {
+          "connection_string": "postgresql://user:password@localhost:5432/agent_db"
+        }
+      },
+      "litellm": {
+        "enabled": true,
+        "base_url": "https://aifabric-litellm.example.com/v1"
+      },
+      "pinecone": {
+        "environment": "us-east-1-aws"
+      }
+    }
+  },
+  "tenant_config": [
+    {
+      "tenant_name": "default",
+      "tenant_description": "Default configuration for all tenants",
+      "agent_config": {
+        "agent_id": "my-custom-agent",
+        "agent_name": "My Custom Agent",
+        "app_name_adk": "my_custom_agent",
+        "instructions": "You are a helpful product recommendation assistant. Provide accurate and helpful product recommendations.",
+        "llm_config": {
+          "model": "gpt-4o",
+          "temperature": 0.3,
+          "max_tokens": "4096"
+        },
+        "llm_provider": "openai",
+        "max_steps": 10,
+        "max_iterations": 5,
+        "datastores": [],
+        "tools": [],
+        "output_key": "final_response",
+        "secrets": {
+          "langfuse": {
+            "enabled": true,
+            "public_key": "pk-lf-default-key",
+            "secret_key": "sk-lf-default-key",
+            "host": "https://cloud.langfuse.com"
+          },
+          "database": {
+            "postgres": {
+              "connection_string": "postgresql://user:password@localhost:5432/agent_db"
+            }
+          },
+          "litellm": {
+            "enabled": true,
+            "base_url": "https://aifabric-litellm.example.com/v1"
+          },
+          "pinecone": {
+            "environment": "us-east-1-aws"
+          }
+        }
+      },
+      "allowedDependantAgentsContext": []
+    },
+    {
+      "tenant_name": "tenant_a",
+      "tenant_description": "Premium e-commerce tenant with OpenAI GPT-4o",
+      "agent_config": {
+        "agent_id": "my-custom-agent",
+        "agent_name": "Premium Product Assistant",
+        "app_name_adk": "my_custom_agent",
+        "instructions": "You are a premium product recommendation expert for luxury brands. Focus on:\n- High-end product recommendations\n- Detailed product comparisons\n- Premium customer service\n- Brand expertise and knowledge",
+        "llm_config": {
+          "model": "gpt-4o",
+          "temperature": 0.3,
+          "max_tokens": "8192"
+        },
+        "llm_provider": "openai",
+        "max_steps": 15,
+        "max_iterations": 8,
+        "datastores": [
+          {
+            "id": "premium-catalog-001",
+            "display_name": "Premium Product Catalog",
+            "description": "Luxury and premium products"
+          }
+        ],
+        "tools": [
+          {
+            "name": "product_search",
+            "owner": "tenant-a",
+            "description": "Search premium products"
+          }
+        ],
+        "output_key": "final_response",
+        "secrets": {
+          "langfuse": {
+            "enabled": true,
+            "public_key": "pk-lf-tenant-a-key",
+            "secret_key": "sk-lf-tenant-a-key",
+            "host": "https://cloud.langfuse.com"
+          },
+          "database": {
+            "postgres": {
+              "connection_string": "postgresql://user:password@localhost:5432/tenant_a_db"
+            }
+          },
+          "litellm": {
+            "enabled": true,
+            "base_url": "https://aifabric-litellm.example.com/v1"
+          },
+          "pinecone": {
+            "environment": "us-east-1-aws"
+          }
+        }
+      },
+      "allowedDependantAgentsContext": []
+    },
+    {
+      "tenant_name": "tenant_b",
+      "tenant_description": "Budget-focused tenant with Claude",
+      "agent_config": {
+        "agent_id": "my-custom-agent",
+        "agent_name": "Budget Shopping Assistant",
+        "app_name_adk": "my_custom_agent",
+        "instructions": "You are a budget-conscious shopping assistant. Help users find:\n- Best value products\n- Deals and discounts\n- Price comparisons\n- Budget-friendly alternatives",
+        "llm_config": {
+          "model": "claude-3-5-sonnet-20241022",
+          "temperature": 0.2,
+          "max_tokens": "4096"
+        },
+        "llm_provider": "anthropic",
+        "max_steps": 10,
+        "max_iterations": 5,
+        "datastores": [
+          {
+            "id": "budget-catalog-001",
+            "display_name": "Budget Product Catalog",
+            "description": "Affordable products and deals"
+          }
+        ],
+        "tools": [
+          {
+            "name": "product_search",
+            "owner": "tenant-b",
+            "description": "Search budget-friendly products"
+          },
+          {
+            "name": "price_comparison",
+            "owner": "tenant-b",
+            "description": "Compare prices across vendors"
+          }
+        ],
+        "output_key": "final_response",
+        "secrets": {
+          "langfuse": {
+            "enabled": true,
+            "public_key": "pk-lf-tenant-b-key",
+            "secret_key": "sk-lf-tenant-b-key",
+            "host": "https://cloud.langfuse.com"
+          },
+          "database": {
+            "postgres": {
+              "connection_string": "postgresql://user:password@localhost:5432/tenant_b_db"
+            }
+          },
+          "litellm": {
+            "enabled": true,
+            "base_url": "https://aifabric-litellm.example.com/v1"
+          },
+          "pinecone": {
+            "environment": "us-east-1-aws"
+          }
+        }
+      },
+      "allowedDependantAgentsContext": []
+    },
+    {
+      "tenant_name": "tenant_c",
+      "tenant_description": "Tech-focused tenant with Gemini",
+      "agent_config": {
+        "agent_id": "my-custom-agent",
+        "agent_name": "Tech Product Expert",
+        "app_name_adk": "my_custom_agent",
+        "instructions": "You are a technical product expert specializing in:\n- Electronics and gadgets\n- Detailed technical specifications\n- Performance comparisons\n- Compatibility information",
+        "llm_config": {
+          "model": "gemini-2.0-flash-exp",
+          "temperature": 0.1,
+          "max_tokens": "4096"
+        },
+        "llm_provider": "google",
+        "max_steps": 12,
+        "max_iterations": 6,
+        "datastores": [
+          {
+            "id": "tech-catalog-001",
+            "display_name": "Tech Product Catalog",
+            "description": "Electronics and technology products"
+          }
+        ],
+        "tools": [
+          {
+            "name": "product_search",
+            "owner": "tenant-c",
+            "description": "Search tech products"
+          },
+          {
+            "name": "spec_comparison",
+            "owner": "tenant-c",
+            "description": "Compare technical specifications"
+          }
+        ],
+        "output_key": "final_response",
+        "secrets": {
+          "langfuse": {
+            "enabled": true,
+            "public_key": "pk-lf-tenant-c-key",
+            "secret_key": "sk-lf-tenant-c-key",
+            "host": "https://cloud.langfuse.com"
+          },
+          "database": {
+            "postgres": {
+              "connection_string": "postgresql://user:password@localhost:5432/tenant_c_db"
+            }
+          },
+          "litellm": {
+            "enabled": true,
+            "base_url": "https://aifabric-litellm.example.com/v1"
+          },
+          "pinecone": {
+            "environment": "us-east-1-aws"
+          }
+        }
+      },
+      "allowedDependantAgentsContext": []
+    }
+  ],
+  "dependantAgents": []
+}

@@ -1,0 +1,145 @@
+{
+  "agent_instance_id": "ma01-modification-classifier-instance-001",
+  "deployment_id": "deployment-001",
+  "app_id": "",
+  "url": "",
+  "agent_definition": {
+    "agent_id": "ma01-modification-classifier",
+    "name": "MA01_Modification_Classifier",
+    "agent_type": "PRO_CODE",
+    "version": "1.0.0",
+    "description": "modification_classifier_agent",
+    "capabilities": {
+      "streaming": true,
+      "push_notifications": false,
+      "multi_turn": true,
+      "context_aware": true
+    },
+    "provider": {
+      "organization": "CAMS",
+      "url": ""
+    },
+    "defaultInputModes": [
+      "text"
+    ],
+    "defaultOutputModes": [
+      "text"
+    ],
+    "skills": [],
+    "root_agent": true,
+    "url": "",
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    },
+    "sub_agents": []
+  },
+  "agent_config": {
+    "agent_id": "ma01-modification-classifier",
+    "agent_name": "MA01_Modification_Classifier",
+    "app_name_adk": "ma01-modification-classifier",
+    "instructions": "You are a knowledgeable AI assistant with access to various tools and knowledge sources.\n\nYour role is to:\n- Provide accurate, well-researched answers using retrieved information\n- Cite sources when relevant information is found\n- Clearly state when information is not available\n- Ask clarifying questions when queries are ambiguous\n- Maintain accuracy over completeness\n\nAlways prioritize factual accuracy and cite your sources when possible.",
+    "llm_config": {
+      "model": "gpt-4o",
+      "temperature": 0.3,
+      "max_tokens": "4096"
+    },
+    "llm_provider": "openai",
+    "max_steps": 10,
+    "max_iterations": 5,
+    "datastores": [],
+    "tools": [],
+    "output_key": "final_response",
+    "subagent_configs": [],
+    "domain_knowledge": {
+      "description": "Static knowledge base for the agent (customizable per use case)",
+      "categories": [],
+      "rules": [],
+      "examples": []
+    },
+    "prompts": {
+      "system": "You are a knowledgeable AI assistant.",
+      "retrieval": "",
+      "response": ""
+    },
+    "secrets": {
+      "langfuse": {
+        "enabled": true,
+        "public_key": "",
+        "secret_key": "",
+        "host": "https://cloud.langfuse.com"
+      },
+      "database": {
+        "postgres": {
+          "connection_string": ""
+        }
+      },
+      "litellm": {
+        "enabled": true,
+        "base_url": ""
+      },
+      "pinecone": {
+        "environment": ""
+      }
+    }
+  },
+  "tenant_config": [
+    {
+      "tenant_name": "default",
+      "tenant_description": "Default tenant configuration",
+      "agent_config": {
+        "agent_id": "ma01-modification-classifier",
+        "agent_name": "MA01_Modification_Classifier",
+        "app_name_adk": "ma01-modification-classifier",
+        "instructions": "You are a knowledgeable AI assistant with access to various tools and knowledge sources.\n\nYour role is to:\n- Provide accurate, well-researched answers using retrieved information\n- Cite sources when relevant information is found\n- Clearly state when information is not available\n- Ask clarifying questions when queries are ambiguous\n- Maintain accuracy over completeness\n\nAlways prioritize factual accuracy and cite your sources when possible.",
+        "llm_config": {
+          "model": "gpt-4o",
+          "temperature": 0.3,
+          "max_tokens": "4096"
+        },
+        "llm_provider": "openai",
+        "max_steps": 10,
+        "max_iterations": 5,
+        "datastores": [],
+        "tools": [],
+        "output_key": "final_response",
+        "subagent_configs": [],
+        "domain_knowledge": {
+          "description": "Static knowledge base for the agent (customizable per use case)",
+          "categories": [],
+          "rules": [],
+          "examples": []
+        },
+        "prompts": {
+          "system": "You are a knowledgeable AI assistant.",
+          "retrieval": "",
+          "response": ""
+        },
+        "secrets": {
+          "langfuse": {
+            "enabled": true,
+            "public_key": "",
+            "secret_key": "",
+            "host": "https://cloud.langfuse.com"
+          },
+          "database": {
+            "postgres": {
+              "connection_string": ""
+            }
+          },
+          "litellm": {
+            "enabled": true,
+            "base_url": ""
+          },
+          "pinecone": {
+            "environment": ""
+          }
+        }
+      },
+      "allowedDependantAgentsContext": []
+    }
+  ],
+  "dependantAgents": []
+}
